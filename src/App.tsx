@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
+import { useAuthenticator } from '@aws-amplify/ui-react';
 import { generateClient } from "aws-amplify/data";
 
 const client = generateClient<Schema>();
 
 function App() {
-  const [todos, setInventory] = useState<Array<Schema["Inventory"]["type"]>>([]);
+  const { signOut } = useAuthenticator();
+  const [inventory, setInventory] = useState<Array<Schema["Inventory"]["type"]>>([]);
 
   useEffect(() => {
     client.models.Inventory.observeQuery().subscribe({
@@ -22,7 +24,7 @@ function App() {
       <h1>My Inventory</h1>
       <button onClick={createItem}>+ new</button>
       <ul>
-        {todos.map((item) => (
+        {inventory.map((item) => (
           <li key={item.id}>{item.ItemID}</li>
         ))}
       </ul>
@@ -33,6 +35,7 @@ function App() {
           Review next step of this tutorial.
         </a>
       </div>
+      <button onClick={signOut}>Sign out</button>
     </main>
   );
 }
