@@ -5,25 +5,25 @@ import { generateClient } from "aws-amplify/data";
 const client = generateClient<Schema>();
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [todos, setInventory] = useState<Array<Schema["Inventory"]["type"]>>([]);
 
   useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
+    client.models.Inventory.observeQuery().subscribe({
+      next: (data) => setInventory([...data.items]),
     });
   }, []);
 
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+  function createItem() {
+    client.models.Inventory.create({ ItemID: window.prompt("Item ID") });
   }
 
   return (
     <main>
-      <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
+      <h1>My Inventory</h1>
+      <button onClick={createItem}>+ new</button>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+        {todos.map((item) => (
+          <li key={item.id}>{item.ItemID}</li>
         ))}
       </ul>
       <div>
