@@ -24,18 +24,18 @@ function App() {
     }
   }
 
-  function editItem(itemID: string) {
+  function editItem(id: string, itemID: string) {
     const newItemID = window.prompt("New Item ID", itemID);
     if (newItemID) {
-      client.models.Inventory.update({ id: itemID, ItemID: newItemID }).catch((err) => {
+      client.models.Inventory.update({ id: id, ItemID: newItemID }).catch((err) => {
         console.error("Error updating item:", err);
       });
     }
   }
   
-  function deleteItem(itemID: string) {
+  function deleteItem(id: string) {
     if (window.confirm("Are you sure you want to delete this item?")) {
-      client.models.Inventory.delete({ id: itemID }).catch((err) => {
+      client.models.Inventory.delete({ id: id }).catch((err) => {
         console.error("Error deleting item:", err);
       });
     }
@@ -49,8 +49,8 @@ function App() {
         {inventory.map((item) => (
           <li key={item.ItemID}>
             {item.ItemID}
-            <button onClick={() => item.ItemID && editItem(item.ItemID)}>Edit</button>
-            <button onClick={() => item.ItemID && deleteItem(item.ItemID)}>Delete</button>
+            <button onClick={() => item.ItemID && editItem(item.id, item.ItemID)}>Edit</button>
+            <button onClick={() => item.ItemID && deleteItem(item.id)}>Delete</button>
           </li>
         ))}
       </ul>
