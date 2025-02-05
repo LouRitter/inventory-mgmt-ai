@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
-import { useAuthenticator } from '@aws-amplify/ui-react';
+import { useAuthenticator, Table, TableHead, TableRow, TableCell, TableBody, Button, Flex } from '@aws-amplify/ui-react';
 import { generateClient } from "aws-amplify/data";
 
 const client = generateClient<Schema>();
@@ -40,28 +40,35 @@ function App() {
       });
     }
   }
+
   return (
-    <main>
-      <h1>{user?.signInDetails?.loginId}'s todos</h1>
-      <h1>My Inventory</h1>
-      <button onClick={createItem}>+ new</button>
-      <ul>
-        {inventory.map((item) => (
-          <li key={item.ItemID}>
-            {item.ItemID}
-            <button onClick={() => item.ItemID && editItem(item.id, item.ItemID)}>Edit</button>
-            <button onClick={() => item.ItemID && deleteItem(item.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
-      </div>
-      <button onClick={signOut}>Sign out</button>
+    <main style={{ width: '100%', padding: '1rem' }}>
+      <h1>{user?.signInDetails?.loginId}'s Inventory</h1>
+      <Flex direction="column" gap="1rem" width="100%">
+        <Button onClick={createItem}>+ New Item</Button>
+        <Table variation="striped" style={{ width: '100%', tableLayout: 'auto' }}>
+          <TableHead>
+            <TableRow>
+              <TableCell as="th" style={{ width: '70%' }}>Item ID</TableCell>
+              <TableCell as="th" style={{ width: '30%' }}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {inventory.map((item) => (
+              <TableRow key={item.id}>
+                <TableCell>{item.ItemID}</TableCell>
+                <TableCell>
+                  <Flex gap="0.5rem">
+                    <Button onClick={() => item.ItemID && editItem(item.id, item.ItemID)}>Edit</Button>
+                    <Button onClick={() => item.ItemID && deleteItem(item.id)}>Delete</Button>
+                  </Flex>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <Button onClick={signOut}>Sign out</Button>
+      </Flex>
     </main>
   );
 }

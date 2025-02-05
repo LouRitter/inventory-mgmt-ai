@@ -1,65 +1,110 @@
+/* Global Styles */
 body {
   margin: 0;
-  background: linear-gradient(180deg, rgb(117, 81, 194), rgb(255, 255, 255));
+  background: linear-gradient(180deg, #E6E6FA, #819461); /* Lavender to White Smoke */
   display: flex;
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   height: 100vh;
   width: 100vw;
   justify-content: center;
   align-items: center;
+  color: #333333; /* Dark Charcoal */
 }
 
+/* Main Container */
 main {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-}
-
-button {
+  background-color: #FFFFFF; /* White */
+  padding: 2rem;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: white;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-ul {
-  padding-inline-start: 0;
-  margin-block-start: 0;
-  margin-block-end: 0;
-  list-style-type: none;
+/* Heading Styles */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #6c4e81; /* Indigo */
+}
+
+/* Flexbox Layout */
+.flex-container {
   display: flex;
   flex-direction: column;
-  margin: 8px 0;
-  border: 1px solid black;
-  gap: 1px;
-  background-color: black;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #FFFFFF; /* White */
   border-radius: 8px;
-  overflow: auto;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-li {
-  background-color: white;
-  padding: 8px;
+th, td {
+  padding: 0.75rem;
+  border-bottom: 1px solid #E9ECEF; /* Light Gray */
 }
 
-li:hover {
-  background: #dadbf9;
+th {
+  background-color: #e2f0ca; /* Light Gray */
+  color: #333333; /* Dark Charcoal */
 }
 
-a {
-  font-weight: 800;
-  text-decoration: none;
+tbody tr:nth-child(odd) {
+  background-color: #f8faf8; /* Very Light Gray */
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e2f0ca; /* Light Gray */
+}
+
+/* Button Styles */
+button {
+  background-color: #6B8E23; /* Olive Drab */
+  color: #FFFFFF; /* White */
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 200ms, color 200ms;
+}
+
+button:hover {
+  background-color: #819461; /* Dark Olive Green */
+  color: #FFFFE0; /* Light Yellow */
+}
+
+button:active {
+  background-color: #4B5320; /* Darker Olive Green */
+}
+
+/* Sign Out Button */
+.signout-button {
+  margin-top: 1rem;
+  background-color: #6c757d; /* Gray */
+}
+.signin-button {
+  margin-top: 1rem;
+  background-color: #6c757d; /* Gray */
+}
+.signout-button:hover {
+  background-color: #5a6268; /* Darker Gray */
+}
+.amplify-tabs__item {
+  background-color: #6B8E23; /* Olive Drab */
+  color: #FFFFFF; /* White */
+  border-color: #819461;
+}
+.amplify-tabs__item--active {
+  background-color: #6B8E23; /* Olive Drab */
+  color: #FFFFFF; /* White */
+  border-color: #819461;
 }
