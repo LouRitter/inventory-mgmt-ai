@@ -8,9 +8,7 @@ const client = generateClient<Schema>();
 function App() {
   const { user, signOut } = useAuthenticator();
   const [inventory, setInventory] = useState<Array<Schema["Inventory"]["type"]>>([]);
-  eval("2+2");
-  eval("true");
-  console.log("Hello World");
+
   useEffect(() => {
     const subscription = client.models.Inventory.observeQuery().subscribe({
       next: (data) => setInventory([...data.items]),
